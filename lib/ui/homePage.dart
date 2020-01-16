@@ -36,16 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             print(snapshot.data);
             if (snapshot.data == null) {
-              return StreamBuilder(
-                stream: movieBloc.statusCodeStream,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.data == -1) {
-                    Center(child: Text("Loading"));
-                  } else {
-                    return Center(child: Text("Some Error"));
-                  }
-                },
-              );
+              return Center(child: Text("Loading"));
             } else {
               return ListView.builder(
                 itemCount: snapshot.data.length,

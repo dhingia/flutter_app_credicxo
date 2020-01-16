@@ -10,8 +10,10 @@ class MovieBloc {
   int status = -1;
 
   fetchAllMovies() async {
+    _statusCodeStreamControler.sink.add(status);
     List<Movie> Movies = await MovieClinetApi().getData();
     status = MovieClinetApi.currentStatusCode;
+    print("" + status.toString());
     _movieListStreamControler.sink.add(Movies);
     _statusCodeStreamControler.sink.add(status);
   }
